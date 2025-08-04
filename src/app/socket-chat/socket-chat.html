@@ -1,0 +1,21 @@
+<p class="description">
+  This is a simple real-time chat app where users can join a room with a username and exchange messages using WebSockets.
+</p>
+<div *ngIf="!joined" class="join-form">
+  <h2>Join Chat Room</h2>
+  <input [(ngModel)]="username" placeholder="Enter your username">
+  <input [(ngModel)]="room" placeholder="Enter room name">
+  <button (click)="joinRoom()">Join</button>
+</div>
+
+<div *ngIf="joined" class="chat-box">
+  <div class="messages">
+    <div *ngFor="let m of messages" class="message">
+      <strong>{{m.user}}:</strong> {{m.text}}
+    </div>
+  </div>
+  <div class="input-box">
+    <input [(ngModel)]="message" placeholder="Type a message...">
+    <button (click)="sendMessage()">Send</button>
+  </div>
+</div>

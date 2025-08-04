@@ -1,0 +1,17 @@
+<p class="description">
+  This peer-to-peer chat app uses WebRTC for direct communication between two users, with Socket.IO for signaling. Start as a caller or receiver to begin exchanging messages in real-time.
+</p>
+<h2>P2P Chat (WebRTC + Socket.IO)</h2>
+
+<!-- Start connection buttons -->
+<button (click)="start(true)">Start as Caller</button>
+<button (click)="start(false)">Start as Receiver</button>
+
+<br /><br />
+
+<!-- Chat input -->
+<input [(ngModel)]="input" placeholder="Type your message..." />
+<button [disabled]="!webrtc.dataChannelOpen() || !input" (click)="send()">Send</button>
+
+<!-- Chat display -->
+<div *ngFor="let m of messages()"> {{ m }} </div>

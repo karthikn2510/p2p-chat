@@ -1,0 +1,31 @@
+.join-form, .chat-box {
+  width: 400px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+.messages {
+  height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background: #f9f9f9;
+  margin-bottom: 10px;
+}
+.message {
+  margin: 5px 0;
+}
+.input-box {
+  display: flex;
+}
+.input-box input {
+  flex: 1;
+  padding: 8px;
+}
+.input-box button {
+  padding: 8px 12px;
+}
+.description {
+  font-style: italic;
+  margin-bottom: 1rem;
+  color: #666;
+}
