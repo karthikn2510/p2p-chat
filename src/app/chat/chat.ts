@@ -3,11 +3,12 @@ import { WebrtcService } from '../webrtc.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SocketService } from '../socket.service';
+import { IncomingCall } from '../incoming-call/incoming-call';
 
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, ],
   templateUrl: './chat.html',
   styleUrl: './chat.css'
 })

@@ -4,6 +4,14 @@
 <h2>P2P Chat (WebRTC + Socket.IO)</h2>
 
 <!-- Start connection buttons -->
+ <!-- <app-incoming-call
+  *ngIf="true"
+  callerName="Karthi"
+  (accept)="start(true)"
+  (reject)="start(false)">
+</app-incoming-call> -->
+
+
 <button (click)="start(true)">Start as Caller</button>
 <button (click)="start(false)">Start as Receiver</button>
 

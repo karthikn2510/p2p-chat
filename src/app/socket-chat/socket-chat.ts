@@ -16,12 +16,35 @@ export class SocketChat {
   message = '';
   joined = false;
   messages: { user: string, text: string }[] = [];
+  typingUser: string | null = null;
+  typingTimeout: any;
+  roomUsers: { id: string, username: string }[] = [];
 
   constructor(private socket: SocketService) {
     this.socket.on('chat-message', (data) => {
       this.messages.push(data);
     });
+
+    this.socket.on('typing', (data: { user: string }) => {
+      this.typingUser = data.user;
+
+      clearTimeout(this.typingTimeout);
+      this.typingTimeout = setTimeout(() => {
+        this.typingUser = null;
+      }, 3000); // Remove after 3 seconds of no typing
+    });
+
+    this.socket.on('room-users', (users) => {
+      this.roomUsers = users;
+    })
+
   }
+
+  ngAfterViewChecked() {
+    const el = document.getElementById('messages');
+    if (el) el.scrollTop = el.scrollHeight;
+  }
+
 
   joinRoom() {
     if (this.username && this.room) {
@@ -37,9 +60,13 @@ export class SocketChat {
         user: this.username,
         text: this.message
       });
-      this.messages.push({ user: 'You', text: this.message });
       this.message = '';
     }
   }
+
+  onTyping() {
+    this.socket.emit('typing', { user: this.username, room: this.room });
+  }
+
 
 }
