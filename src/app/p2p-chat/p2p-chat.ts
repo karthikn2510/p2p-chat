@@ -9,8 +9,8 @@ import { IncomingCall } from '../incoming-call/incoming-call';
   selector: 'app-chat',
   standalone: true,
   imports: [FormsModule, CommonModule, ],
-  templateUrl: './chat.html',
-  styleUrl: './chat.css'
+  templateUrl: './p2p-chat.html',
+  styleUrl: './p2p-chat.css'
 })
 export class Chat {
 

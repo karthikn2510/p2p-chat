@@ -1,10 +1,12 @@
 import { Routes } from '@angular/router';
-import { Chat } from './chat/chat';
-import { SocketChat } from './socket-chat/socket-chat';
+import { Chat } from './p2p-chat/p2p-chat';
+import { SocketChat } from './wp-chat/wp-chat';
+import { Login } from './login/login';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
-  { path: 'wp-chat', component: SocketChat },
-  { path: 'p2p-chat', component: Chat},
-  { path: '', redirectTo: 'wp-chat', pathMatch: 'full' }, // optional default route
-  { path: '**', redirectTo: 'wp-chat' }
+  { path: '', component: Login },
+  { path: 'wp-chat', component: SocketChat, canActivate: [authGuard] },
+  { path: 'p2p-chat', component: Chat, canActivate: [authGuard] },
+  { path: '**', redirectTo: ''}
 ];

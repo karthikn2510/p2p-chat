@@ -7,8 +7,8 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-socket-chat',
   standalone: true,
   imports: [FormsModule, CommonModule],
-  templateUrl: './socket-chat.html',
-  styleUrl: './socket-chat.css'
+  templateUrl: './wp-chat.html',
+  styleUrl: './wp-chat.css'
 })
 export class SocketChat {
   username = '';
@@ -38,6 +38,10 @@ export class SocketChat {
       this.roomUsers = users;
     })
 
+  }
+
+  ngOnInit() {
+   this.username = localStorage.getItem('username') || '';
   }
 
   ngAfterViewChecked() {

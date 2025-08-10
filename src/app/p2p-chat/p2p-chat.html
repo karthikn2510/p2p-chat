@@ -1,10 +1,11 @@
 <p class="description">
-  This peer-to-peer chat app uses WebRTC for direct communication between two users, with Socket.IO for signaling. Start as a caller or receiver to begin exchanging messages in real-time.
+  This peer-to-peer chat app uses WebRTC for direct communication between two users, with Socket.IO for signaling. Start
+  as a caller or receiver to begin exchanging messages in real-time.
 </p>
 <h2>P2P Chat (WebRTC + Socket.IO)</h2>
 
 <!-- Start connection buttons -->
- <!-- <app-incoming-call
+<!-- <app-incoming-call
   *ngIf="true"
   callerName="Karthi"
   (accept)="start(true)"
@@ -22,4 +23,6 @@
 <button [disabled]="!webrtc.dataChannelOpen() || !input" (click)="send()">Send</button>
 
 <!-- Chat display -->
-<div *ngFor="let m of messages()"> {{ m }} </div>
+@for (m of messages(); track m) {
+<div>{{ m }}</div>
+}

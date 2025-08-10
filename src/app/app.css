@@ -1,14 +1,84 @@
+/* General Reset for Smoothness */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.app-wrapper {
+  min-height: 100vh;
+}
+
+/* Body Defaults */
+body {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  background-attachment: fixed; /* stays in place when scrolling */
+  background-size: cover;
+  color: white; /* default text color */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Navigation Menu */
 .menu {
-      display: flex;
-      gap: 1rem;
-      padding: 1rem;
-      background: #f5f5f5;
-    }
-    a {
-      text-decoration: none;
-      color: #007bff;
-    }
-    .active {
-      font-weight: bold;
-      text-decoration: underline;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #4f46e5; /* Indigo */
+  padding: 0.8rem 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.menu span {
+  background: linear-gradient(90deg, #fbbf24, #f59e0b); /* warm yellow-orange */
+  color: #111827; /* dark text for contrast */
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px; /* fully rounded pill shape */
+  margin-right: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  white-space: nowrap; /* prevent wrapping */
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  margin: 0 0.8rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.menu a.active {
+  border-bottom: 2px solid white;
+}
+
+.menu a:hover {
+  color: #d1d5db;
+}
+
+.menu button {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.menu button:hover {
+  background: #dc2626;
+}
+
+/* Loading Spinner Placement */
+app-loading-spinner {
+  display: block;
+  margin: 1rem auto;
+}
+
+/* Router Content Area */
+router-outlet {
+  display: block;
+  margin-top: 1rem;
+}

@@ -3,48 +3,59 @@
   WebSockets.
 </p>
 
-<div *ngIf="!joined" class="join-form">
+@if (!joined){
+<div class="join-form">
   <h2>Join Chat Room</h2>
   <input [(ngModel)]="username" placeholder="Enter your username" />
   <input [(ngModel)]="room" placeholder="Enter room name" (keydown.enter)="joinRoom()" />
   <button (click)="joinRoom()">Join</button>
 </div>
-
-<div *ngIf="joined" class="chat-container">
+} @else if(joined) {
+<div class="chat-container">
   <div class="chat-header">
     <h3>Room: {{ room }}</h3>
     <span>User: {{ username }}</span>
   </div>
 
   <!-- SIDEBAR - User List -->
-  <div class="sidebar" *ngIf="false">
+  @if(false){
+  <div class="sidebar">
     <h4>Users in Room</h4>
     <ul>
-      <li *ngFor="let user of roomUsers">
+      @for (user of roomUsers; track user.username) {
+      <li>
         <span class="dot online"></span> {{ user.username }}
       </li>
+      }
     </ul>
   </div>
+  }
 
   <div class="messages" id="messages">
-    <div *ngFor="let m of messages"
-      [ngClass]="{'message': true, 'outgoing': m.user === username, 'incoming': m.user !== username}">
+    @for (m of messages; track m) {
+    <div [ngClass]="{'message': true, 'outgoing': m.user === username, 'incoming': m.user !== username}">
       <div class="message-bubble">
-        <strong *ngIf="m.user !== username">{{ m.user }}</strong>
+        @if(m.user !== username){
+        <strong>{{ m.user }}</strong>
+        }
         <p>{{ m.text }}</p>
       </div>
     </div>
+    }
   </div>
 
-  <div class="typing-indicator" *ngIf="typingUser && typingUser !== username">
+  @if(typingUser && typingUser !== username) {
+  <div class="typing-indicator">
     {{ typingUser }} is typing
-      <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
   </div>
+  }
 
 
   <div class="chat-input">
-    <input [(ngModel)]="message" placeholder="Type a message..." 
-    (keydown.enter)="sendMessage()" (keydown)="onTyping()"/>
+    <input [(ngModel)]="message" placeholder="Type a message..." (keydown.enter)="sendMessage()"
+      (keydown)="onTyping()" />
     <button (click)="sendMessage()" [disabled]="!message.trim()">Send</button>
   </div>
 </div>
+}

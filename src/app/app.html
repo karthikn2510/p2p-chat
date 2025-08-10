@@ -1,5 +1,14 @@
-<nav class="menu">
-      <a routerLink="/wp-chat" routerLinkActive="active">WP Chat</a>
-      <a routerLink="/p2p-chat" routerLinkActive="active">Peer 2 Peer Chat</a>
-    </nav>
-    <router-outlet></router-outlet>
+<div class="app-wrapper">
+
+  @if (user$ | async; as loggedInUser) {
+  <nav class="menu">
+    <span>Welcome {{ auth.username() }}</span>
+    <a routerLink="/wp-chat" routerLinkActive="active">WP Chat</a>
+    <a routerLink="/p2p-chat" routerLinkActive="active">Peer 2 Peer Chat</a>
+    <button (click)="auth.logout()">Logout</button>
+  </nav>
+  }
+
+  <app-loading-spinner></app-loading-spinner>
+  <router-outlet></router-outlet>
+</div>
